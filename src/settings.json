@@ -1,0 +1,122 @@
+{
+  "name": "PabloCloud Api's",
+  "version": "1.0.0",
+  "description": "Simple and Easy-to-Use API Documentation",
+  "header": {
+    "status": "Online!",
+    "imageSrc": [
+      "https://media0.giphy.com/media/UgV8Y7bDxsZDCP01eo/giphy.gif?cid=6c09b952jr6lje7ohjdrngib7cg8ubb0pnmo4btg7fo7i26t&amp;ep=v1_internal_gif_by_id&amp;rid=giphy.gif&amp;ct=g"
+    ],
+    "imageSize": {
+      "mobile": "80%",
+      "tablet": "40%",
+      "desktop": "40%"
+    }
+  },
+  "apiSettings": {
+    "creator": "PabloNetwork"
+  },
+  "links": [
+    {
+      "name": "YouTube",
+      "url": "https://youtube.com/@PabloGabut"
+    },
+    {
+      "name": "Developer",
+      "url": "https://wa.me/62857552519341"
+    }
+  ],
+  "categories": [
+    {
+      "name": "AI (Artificial Intelligence)",
+      "items": [
+        {
+          "name": "LuminAI",
+          "desc": "Talk with luminai",
+          "path": "/ai/luminai?text="
+        },
+        {
+          "name": "HydroMind",
+          "desc": "Talk with hydromind",
+          "path": "/ai/hydromind?text=&model=",
+          "innerDesc": "See the list of supported AI models here: https://mind.hydrooo.web.id"
+        }
+      ]
+    },
+    {
+      "name": "Downloader",
+      "items": [
+        {
+          "name": "YTMP3",
+          "desc": "Download Music From YouTube",
+          "path": "/downloader/ytmp3?url="
+        },
+        {
+          "name": "YTMP4",
+          "desc": "Download Video From YouTube",
+          "path": "/downloader/ytmp4?url="
+        },
+        {
+          "name": "MediaFire",
+          "desc": "Download File From MediaFire",
+          "path": "/downloader/mediafire?url="
+        },
+        {
+          "name": "TikTok",
+          "desc": "Download Video From TikTok",
+          "path": "/downloader/tiktok?url="
+        },
+        {
+          "name": "SaveTheVideo",
+          "desc": "Download Video Or Audio From Many Platform",
+          "path": "/downloader/stv?url="
+        }
+      ]
+    },
+    {
+      "name": "Random",
+      "items": [
+        {
+          "name": "Blue Archive",
+          "desc": "Blue Archive Random Images",
+          "path": "/random/ba"
+        },
+        {
+          "name": "Waifu",
+          "desc": "Waifu Random Images",
+          "path": "/random/waifu"
+        }
+      ]
+    },
+    {
+      "name": "Nsfw 18+",
+      "items": [
+        {
+          "name": "Waifu",
+          "desc": "Waifu Nsfw Random Images",
+          "path": "/nsfw/waifu"
+        },
+        {
+          "name": "Neko",
+          "desc": "Neko Nsfw Random Images",
+          "path": "/nsfw/neko"
+        },
+        {
+          "name": "Trap",
+          "desc": "Trap Nsfw Random Images",
+          "path": "/nsfw/trap"
+        }
+      ]
+    },
+    {
+      "name": "Search Tools",
+      "items": [
+        {
+          "name": "YouTube",
+          "desc": "Video search",
+          "path": "/search/youtube?q="
+        }
+      ]
+    }
+  ]
+}
