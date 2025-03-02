@@ -1,20 +1,33 @@
 const axios = require("axios");
 const QRCode = require("qrcode");
 const FormData = require("form-data");
-const path = require("path");
-const fs = require("fs");
+const stream = require("stream");
 
-function saveTempFile(buffer) {
-    const tempFilePath = path.join(process.cwd(), `temp_${Date.now()}.png`);
-    fs.writeFileSync(tempFilePath, buffer);
-    return tempFilePath;
+function convertCRC16(str) {
+    let crc = 0xffff;
+    for (let c = 0; c < str.length; c++) {
+        crc ^= str.charCodeAt(c) << 8;
+        for (let i = 0; i < 8; i++) {
+            crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+        }
+    }
+    return crc.toString(16).toUpperCase().padStart(4, "0");
 }
 
-async function uploadFileUgu(input) {
-    if (!fs.existsSync(input)) throw new Error("File not found");
+function generateTransactionId() {
+    return `TRX${Date.now()}`;
+}
+
+function generateExpirationTime() {
+    return new Date(Date.now() + 30 * 60 * 1000).toISOString();
+}
+
+async function uploadBufferToUguu(buffer, filename = "qrcode.png") {
     try {
         const form = new FormData();
-        form.append("files[]", fs.createReadStream(input));
+        const passthrough = new stream.PassThrough();
+        passthrough.end(buffer);
+        form.append("files[]", passthrough, { filename });
 
         const response = await axios.post("https://uguu.se/upload.php", form, {
             headers: {
@@ -34,42 +47,16 @@ async function uploadFileUgu(input) {
     }
 }
 
-function convertCRC16(str) {
-    let crc = 0xffff;
-
-    for (let c = 0; c < str.length; c++) {
-        crc ^= str.charCodeAt(c) << 8;
-
-        for (let i = 0; i < 8; i++) {
-            crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
-        }
-    }
-
-    return crc.toString(16).toUpperCase().padStart(4, "0");
-}
-
-function generateTransactionId() {
-    return `TRX${Date.now()}`;
-}
-
-function generateExpirationTime() {
-    return new Date(Date.now() + 30 * 60 * 1000).toISOString();
-}
-
 async function createQRIS(amount, codeqr) {
     try {
-        let qrisData = codeqr.slice(0, -4);
-        qrisData = qrisData.replace("010211", "010212");
-
+        let qrisData = codeqr.slice(0, -4).replace("010211", "010212");
         const [part1, part2] = qrisData.split("5802ID");
         amount = amount.toString();
         const uang = `54${amount.length.toString().padStart(2, "0")}${amount}5802ID`;
 
         const finalQRIS = `${part1}${uang}${part2}${convertCRC16(part1 + uang + part2)}`;
         const buffer = await QRCode.toBuffer(finalQRIS);
-        const filePath = saveTempFile(buffer);
-        const uploadedFile = await uploadFileUgu(filePath);
-        fs.unlinkSync(filePath);
+        const uploadedFile = await uploadBufferToUguu(buffer);
 
         return {
             transactionId: generateTransactionId(),
