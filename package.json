@@ -25,6 +25,7 @@
     "node-schedule": "*",
     "path": "*",
     "qrcode": "*",
-    "form-data": "*"
+    "form-data": "*",
+    "stream": "*"
   }
 }
