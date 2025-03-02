@@ -1,6 +1,6 @@
 {
   "name": "PabloCloud Api's",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple and Easy-to-Use API Documentation",
   "header": {
     "status": "Online!",
@@ -27,6 +27,21 @@
     }
   ],
   "categories": [
+    {
+      "name": "Orderkuota Gateway",
+      "items": [
+        {
+          "name": "Create Payment",
+          "desc": "Create Qris Payment Using Orderkuota",
+          "path": "/orkut/createpayment?codeqr=&amount="
+        },
+        {
+          "name": "Check Status Payment",
+          "desc": "Check Status Payment Orderkuota",
+          "path": "/orkut/checkstatus?merchant=&keyorkut="
+        }
+      ]
+    },
     {
       "name": "AI (Artificial Intelligence)",
       "items": [
@@ -70,6 +85,11 @@
           "name": "SaveTheVideo",
           "desc": "Download Video Or Audio From Many Platform",
           "path": "/downloader/stv?url="
+        },
+        {
+          "name": "Otakudesu Download",
+          "desc": "Download Anime From Otakudesu",
+          "path": "/anime/otakudesu/download?url="
         }
       ]
     },
@@ -85,6 +105,31 @@
           "name": "Waifu",
           "desc": "Waifu Random Images",
           "path": "/random/waifu"
+        }
+      ]
+    },
+    {
+      "name": "Anime",
+      "items": [
+        {
+          "name": "Otakudesu Search",
+          "desc": "Search Anime From Otakudesu",
+          "path": "/anime/otakudesu/search?query="
+        },
+        {
+          "name": "Otakudesu Ongoing",
+          "desc": "Ongoing List Anime From Otakudesu",
+          "path": "/anime/otakudesu/ongoing"
+        },
+        {
+          "name": "Otakudesu Detail",
+          "desc": "Detail Anime From Otakudesu",
+          "path": "/anime/otakudesu/detail?url="
+        },
+        {
+          "name": "Otakudesu Download",
+          "desc": "Download Anime From Otakudesu",
+          "path": "/anime/otakudesu/download?url="
         }
       ]
     },
@@ -115,6 +160,11 @@
           "name": "YouTube",
           "desc": "Video search",
           "path": "/search/youtube?q="
+        },
+        {
+          "name": "Otakudesu Search",
+          "desc": "Search Anime From Otakudesu",
+          "path": "/anime/otakudesu/search?query="
         }
       ]
     }
